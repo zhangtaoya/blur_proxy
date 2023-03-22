@@ -3,6 +3,7 @@ import pyautogui
 import pyperclip
 import tornado.web
 
+pyautogui.FAILSAFE = False
 PRefresh = (85, 51)
 PCheck = (308, 290)
 PClear = (44, 493)
