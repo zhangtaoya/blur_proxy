@@ -52,6 +52,7 @@ def cpy_curl():
 
 
 def click_and_report():
+    print("now click_and_report")
     blur_click()
     data = cpy_curl()
     print(MYIP, data)
