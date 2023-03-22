@@ -88,5 +88,5 @@ async def main():
 if __name__ == "__main__":
     import sys
 
-    MYIP = sys.argv[2]
+    MYIP = sys.argv[1]
     asyncio.run(main())
