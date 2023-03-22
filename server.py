@@ -82,7 +82,7 @@ def make_app():
 
 async def main():
     app = make_app()
-    app.listen(8888)
+    app.listen(8888, "0.0.0.0")
     await asyncio.Event().wait()
 
 
