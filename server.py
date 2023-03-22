@@ -56,6 +56,7 @@ def click_and_report():
     blur_click()
     data = cpy_curl()
     print(MYIP, data)
+    return data
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -65,12 +66,12 @@ class MainHandler(tornado.web.RequestHandler):
 
 class ClickCaptchaHandler(tornado.web.RequestHandler):
     def get(self):
-        click_and_report()
-        self.write('{"ret":1}')
+        data = click_and_report()
+        self.write(data)
 
     def post(self):
-        click_and_report()
-        self.write('{"ret":1}')
+        data = click_and_report()
+        self.write(data)
 
 
 def make_app():
@@ -82,7 +83,7 @@ def make_app():
 
 async def main():
     app = make_app()
-    app.listen(8888, "0.0.0.0")
+    app.listen(8888)
     await asyncio.Event().wait()
 
 
