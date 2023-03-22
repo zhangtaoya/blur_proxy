@@ -35,7 +35,7 @@ def move_to_right_click(pose, dur=0.1, slp=0.1):
 
 
 def blur_click():
-    move_to_left_click(PRefresh, slp=10)
+    move_to_left_click(PRefresh, slp=20)
     move_to(PClear)
     move_to_left_click(PCheck, dur=1, slp=10)
 
