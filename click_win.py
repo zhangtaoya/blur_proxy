@@ -35,6 +35,9 @@ def blur_click():
     move_to_left_click(PRefresh, slp=10)
     move_to(PClear)
     move_to_left_click(PCheck, dur=1, slp=10)
+
+
+def cpy_curl():
     move_to_left_click(PClear)
     move_to_left_click(PRefresh, slp=5)
     move_to_right_click(PConsoleUrl, slp=1)
@@ -47,3 +50,4 @@ def blur_click():
 
 
 blur_click()
+cpy_curl()
