@@ -1,6 +1,5 @@
 import pyautogui
 import pyperclip
-import time
 
 PRefresh = (85, 51)
 PCheck = (308, 290)
@@ -8,7 +7,7 @@ PClear = (44, 493)
 PConsoleUrl = (34, 629)
 PMenuCpy = (120, 433)
 PMenuCpySel = (301, 433)
-PMenuCpySelBash = (334, 740)
+PMenuCpySelBash = (334, 740)  # coy HAR parsed log
 
 
 def move_to(pose, dur=0.1, slp=0.1):
