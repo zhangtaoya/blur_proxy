@@ -2,12 +2,22 @@ import pyautogui
 import pyperclip
 import time
 
+pyautogui.moveTo(100, 100, 1)
+
 data = pyperclip.paste()
 print(data)
 
-screenWidth, screenHeight = pyautogui.size()
+print(pyautogui.size())
+print(pyautogui.position())
 currentMouseX, currentMouseY = pyautogui.position()
 
+PRefresh = (85, 51)
+PCheck = (308, 290)
+PClear = (44, 493)
+PConsoleUrl = (34, 629)
+PMenuCpy = (120, 433)
+PMenuCpySel = (301, 433)
+PMenuCpySelBash = (334, 740)
 
 def click_at(x, y, duration=0.1, slp=0.1):
     pyautogui.moveTo(x / 2, y / 2, duration)
