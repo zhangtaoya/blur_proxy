@@ -65,10 +65,21 @@ def cpy_curl():
     return data
 
 
+ON_CLICK = False
+
+
 def click_and_report():
+    global ON_CLICK
+    if ON_CLICK:
+        print(time_str(), "now click doing, bypass")
+        return ""
+    ON_CLICK = True
     print(time_str(), "now click_and_report")
+
     blur_click()
     data = cpy_curl()
+    ON_CLICK = False
+
     print(MYIP, data)
     print(time_str(), "click_and_report done")
     return data
