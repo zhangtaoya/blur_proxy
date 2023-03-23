@@ -91,12 +91,13 @@ class MainHandler(tornado.web.RequestHandler):
         self.write("Hello, world")
 
 
-@gen.coroutine
 class ClickCaptchaHandler(tornado.web.RequestHandler):
+    @gen.coroutine
     def get(self):
         data = click_and_report()
         self.write(data)
 
+    @gen.coroutine
     def post(self):
         data = click_and_report()
         self.write(data)
