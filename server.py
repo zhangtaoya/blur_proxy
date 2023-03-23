@@ -20,7 +20,7 @@ MYIP = ""
 def time_str(ts=None):
     if not ts:
         ts = time.time()
-    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
 
 def move_to(pose, dur=0.1, slp=0.1):
