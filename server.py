@@ -44,7 +44,7 @@ def move_to_right_click(pose, dur=0.1, slp=0.1):
         pyautogui.sleep(slp)
 
 
-def blur_click():
+async def blur_click():
     move_to(PEnterRefresh, slp=1)
     pyautogui.keyDown("enter")
     pyautogui.sleep(0.5)
@@ -55,7 +55,7 @@ def blur_click():
     move_to_left_click(PCheck, dur=1, slp=10)
 
 
-def cpy_curl():
+async def cpy_curl():
     move_to_left_click(PClear)
     move_to_left_click(PRefresh, slp=5)
     move_to_right_click(PConsoleUrl, slp=1)
@@ -77,8 +77,8 @@ async def click_and_report():
     ON_CLICK = True
     print(time_str(), "now click_and_report")
 
-    blur_click()
-    data = cpy_curl()
+    await blur_click()
+    data = await cpy_curl()
     ON_CLICK = False
 
     # print(MYIP, data)
