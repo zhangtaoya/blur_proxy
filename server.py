@@ -1,4 +1,5 @@
 import asyncio
+import time
 import pyautogui
 import pyperclip
 import tornado.web
@@ -14,6 +15,12 @@ PMenuCpySel = (301, 433)
 PMenuCpySelBash = (334, 740)  # coy HAR parsed log
 
 MYIP = ""
+
+
+def time_str(ts=None):
+    if not ts:
+        ts = time.time()
+    time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
 
 def move_to(pose, dur=0.1, slp=0.1):
@@ -59,10 +66,11 @@ def cpy_curl():
 
 
 def click_and_report():
-    print("now click_and_report")
+    print(time_str(), "now click_and_report")
     blur_click()
     data = cpy_curl()
     print(MYIP, data)
+    print(time_str(), "click_and_report done")
     return data
 
 
