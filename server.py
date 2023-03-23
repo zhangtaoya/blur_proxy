@@ -69,7 +69,7 @@ async def cpy_curl():
 ON_CLICK = False
 
 
-async def click_and_report():
+def click_and_report():
     global ON_CLICK
     if ON_CLICK:
         print(time_str(), "now click doing, bypass")
@@ -77,8 +77,8 @@ async def click_and_report():
     ON_CLICK = True
     print(time_str(), "now click_and_report")
 
-    await blur_click()
-    data = await cpy_curl()
+    blur_click()
+    data = cpy_curl()
     ON_CLICK = False
 
     # print(MYIP, data)
@@ -93,8 +93,9 @@ class MainHandler(tornado.web.RequestHandler):
 
 class ClickCaptchaHandler(tornado.web.RequestHandler):
     async def get(self):
-        data = await click_and_report()
-        self.write(data)
+        task = asyncio.create_task(click_and_report())
+        await task
+        self.write("")
 
     async def post(self):
         data = await click_and_report()
