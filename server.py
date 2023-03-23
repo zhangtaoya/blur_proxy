@@ -69,7 +69,7 @@ def cpy_curl():
 ON_CLICK = False
 
 
-def click_and_report():
+async def click_and_report():
     global ON_CLICK
     if ON_CLICK:
         print(time_str(), "now click doing, bypass")
@@ -94,12 +94,12 @@ class MainHandler(tornado.web.RequestHandler):
 class ClickCaptchaHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
-        data = click_and_report()
+        data = await click_and_report()
         self.write(data)
 
     @gen.coroutine
     def post(self):
-        data = click_and_report()
+        data = await click_and_report()
         self.write(data)
 
 
