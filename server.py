@@ -80,7 +80,7 @@ def click_and_report():
     data = cpy_curl()
     ON_CLICK = False
 
-    print(MYIP, data)
+    # print(MYIP, data)
     print(time_str(), "click_and_report done")
     return data
 
