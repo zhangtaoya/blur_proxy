@@ -3,6 +3,7 @@ import time
 import pyautogui
 import pyperclip
 import tornado.web
+from tornado import gen
 
 pyautogui.FAILSAFE = False
 PEnterRefresh = (632, 51)
@@ -90,6 +91,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.write("Hello, world")
 
 
+@gen.coroutine
 class ClickCaptchaHandler(tornado.web.RequestHandler):
     def get(self):
         data = click_and_report()
