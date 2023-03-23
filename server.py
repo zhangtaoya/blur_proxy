@@ -92,12 +92,10 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 class ClickCaptchaHandler(tornado.web.RequestHandler):
-    @gen.coroutine
     async def get(self):
         data = await click_and_report()
         self.write(data)
 
-    @gen.coroutine
     async def post(self):
         data = await click_and_report()
         self.write(data)
