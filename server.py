@@ -30,38 +30,38 @@ def move_to(pose, dur=0.1, slp=0.1):
         pyautogui.sleep(slp)
 
 
-def move_to_left_click(pose, dur=0.1, slp=0.1):
+async def move_to_left_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
     pyautogui.click()
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
-def move_to_right_click(pose, dur=0.1, slp=0.1):
+async def move_to_right_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
     pyautogui.rightClick()
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
 async def blur_click():
     move_to(PEnterRefresh, slp=1)
     pyautogui.keyDown("enter")
-    pyautogui.sleep(0.5)
+    await asyncio.sleep(0.5)
     pyautogui.keyUp("enter")
-
-    pyautogui.sleep(20)
+    await asyncio.sleep(20)
+    # pyautogui.sleep(20)
     move_to(PClear)
-    move_to_left_click(PCheck, dur=1, slp=10)
+    await move_to_left_click(PCheck, dur=1, slp=10)
 
 
 async def cpy_curl():
-    move_to_left_click(PClear)
-    move_to_left_click(PRefresh, slp=5)
-    move_to_right_click(PConsoleUrl, slp=1)
+    await move_to_left_click(PClear)
+    await move_to_left_click(PRefresh, slp=5)
+    await move_to_right_click(PConsoleUrl, slp=1)
     move_to(PMenuCpy, slp=1)
     move_to(PMenuCpySel, slp=1)
-    move_to_left_click(PMenuCpySelBash)
+    await move_to_left_click(PMenuCpySelBash)
     data = pyperclip.paste()
     return data
 
@@ -69,7 +69,7 @@ async def cpy_curl():
 ON_CLICK = False
 
 
-def click_and_report():
+async def click_and_report():
     global ON_CLICK
     if ON_CLICK:
         print(time_str(), "now click doing, bypass")
@@ -77,8 +77,8 @@ def click_and_report():
     ON_CLICK = True
     print(time_str(), "now click_and_report")
 
-    blur_click()
-    data = cpy_curl()
+    await blur_click()
+    data = await cpy_curl()
     ON_CLICK = False
 
     # print(MYIP, data)
@@ -93,9 +93,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 class ClickCaptchaHandler(tornado.web.RequestHandler):
     async def get(self):
-        task = asyncio.create_task(click_and_report())
-        await task
-        self.write("")
+        data = await click_and_report()
+        self.write(data)
 
     async def post(self):
         data = await click_and_report()
