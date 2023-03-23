@@ -4,6 +4,7 @@ import pyperclip
 import tornado.web
 
 pyautogui.FAILSAFE = False
+PEnterRefresh = (632, 51)
 PRefresh = (85, 51)
 PCheck = (308, 290)
 PClear = (44, 493)
@@ -36,10 +37,11 @@ def move_to_right_click(pose, dur=0.1, slp=0.1):
 
 
 def blur_click():
-    move_to_left_click(PRefresh, slp=1)
+    move_to(PEnterRefresh, slp=1)
     pyautogui.keyDown("enter")
     pyautogui.sleep(0.5)
     pyautogui.keyUp("enter")
+
     pyautogui.sleep(20)
     move_to(PClear)
     move_to_left_click(PCheck, dur=1, slp=10)
