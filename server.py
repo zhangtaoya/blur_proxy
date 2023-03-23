@@ -109,7 +109,9 @@ def make_app():
 
 async def main():
     app = make_app()
-    app.listen(8888)
+    port = 8888
+    print("now listen on port", port)
+    app.listen(port)
     await asyncio.Event().wait()
 
 
