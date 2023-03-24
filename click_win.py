@@ -5,6 +5,7 @@ import pyperclip
 import tornado.web
 from tornado import gen
 
+print(pyautogui.size())
 pyautogui.FAILSAFE = False
 PEnterRefresh = (746, 50)
 PRefresh = (85, 52)
@@ -24,22 +25,29 @@ def time_str(ts=None):
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
 
+XRate = 1512 / 1024.0
+YRate = 944 / 768.0
+
+
 async def move_to(pose, dur=0.1, slp=0.1):
-    pyautogui.moveTo(pose[0], pose[1], duration=dur)
+    x, y = pose[0] / XRate, pose[1] / YRate
+    pyautogui.moveTo(x, y, duration=dur)
     if slp > 0:
         await asyncio.sleep(slp)
 
 
 async def move_to_left_click(pose, dur=0.1, slp=0.1):
-    pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.click(pose[0], pose[1])
+    x, y = pose[0] / XRate, pose[1] / YRate
+    pyautogui.moveTo(x, y, duration=dur)
+    pyautogui.click(x, y)
     if slp > 0:
         await asyncio.sleep(slp)
 
 
 async def move_to_right_click(pose, dur=0.1, slp=0.1):
-    pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.rightClick(pose[0], pose[1])
+    x, y = pose[0] / XRate, pose[1] / YRate
+    pyautogui.moveTo(x, y, duration=dur)
+    pyautogui.rightClick(x, y)
     if slp > 0:
         await asyncio.sleep(slp)
 
