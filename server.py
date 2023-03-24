@@ -6,6 +6,8 @@ import tornado.web
 from tornado import gen
 
 pyautogui.FAILSAFE = False
+'''
+#M2
 PEnterRefresh = (746, 50)
 PRefresh = (85, 52)
 PCheck = (308, 290)
@@ -14,6 +16,17 @@ PConsoleUrl = (33, 628)
 PMenuCpy = (128, 429)
 PMenuCpySel = (317, 434)
 PMenuCpySelBash = (314, 734)  # coy HAR parsed log
+'''
+
+# win 1024*768
+PEnterRefresh = (647, 52)
+PRefresh = (85, 53)
+PCheck = (308, 290)
+PClear = (46, 318)
+PConsoleUrl = (34, 454)
+PMenuCpy = (86, 259)
+PMenuCpySel = (319, 258)
+PMenuCpySelBash = (320, 559)  # coy HAR parsed log
 
 MYIP = ""
 
