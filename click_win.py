@@ -86,5 +86,4 @@ async def click_and_report():
     return data
 
 
-data = await click_and_report()
-print(data)
+asyncio.run(click_and_report())
