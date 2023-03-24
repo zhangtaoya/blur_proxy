@@ -6,11 +6,6 @@ import socket
 pyautogui.moveTo(100, 100, 1)
 "koj3pee+weov2Ee"
 
-
-
-
-
-
 data = pyperclip.paste()
 print(data)
 pyautogui.doubleClick(259,136)
