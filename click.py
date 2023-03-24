@@ -2,7 +2,7 @@ import pyautogui
 import pyperclip
 import time
 import socket
-
+pyautogui.dragTo()
 pyautogui.moveTo(100, 100, 1)
 "koj3pee+weov2Ee"
 
