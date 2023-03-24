@@ -83,6 +83,7 @@ async def click_and_report():
 
     # print(MYIP, data)
     print(time_str(), "click_and_report done")
+    print(data)
     return data
 
 
