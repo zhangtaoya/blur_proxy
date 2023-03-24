@@ -61,7 +61,7 @@ async def cpy_curl():
     await move_to_right_click(PConsoleUrl, slp=1)
     move_to(PMenuCpy, slp=1)
     move_to(PMenuCpySel, slp=1)
-    await move_to_left_click(PMenuCpySelBash)
+    await move_to_left_click(PMenuCpySelBash, dur=1, slp=0.5)
     data = pyperclip.paste()
     return data
 
