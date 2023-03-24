@@ -24,10 +24,10 @@ def time_str(ts=None):
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
 
-def move_to(pose, dur=0.1, slp=0.1):
+async def move_to(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
 async def move_to_left_click(pose, dur=0.1, slp=0.1):
@@ -51,7 +51,7 @@ async def blur_click():
     pyautogui.keyUp("enter")
     await asyncio.sleep(20)
     # pyautogui.sleep(20)
-    move_to(PClear)
+    await move_to(PClear)
     await move_to_left_click(PCheck, dur=1, slp=10)
 
 
@@ -59,8 +59,8 @@ async def cpy_curl():
     await move_to_left_click(PClear)
     await move_to_left_click(PRefresh, slp=5)
     await move_to_right_click(PConsoleUrl, slp=1)
-    move_to(PMenuCpy, slp=1)
-    move_to(PMenuCpySel, slp=1)
+    await move_to(PMenuCpy, slp=1)
+    await move_to(PMenuCpySel, slp=1)
     await move_to_left_click(PMenuCpySelBash, dur=1, slp=0.5)
     data = pyperclip.paste()
     return data
