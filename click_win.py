@@ -20,6 +20,16 @@ PMenuCpySelBash = (320, 559 + 136)  # coy HAR parsed log
 MYIP = ""
 
 
+def drag_from_to(pos_from, pos_to, dur=1):
+    pyautogui.moveTo(pos_from[0], pos_from[1])
+    pyautogui.sleep(dur)
+    pyautogui.mouseDown()
+    pyautogui.sleep(dur)
+    pyautogui.moveTo(pos_to[0], pos_to[1])
+    pyautogui.mouseUp()
+    pyautogui.dragRel(0, 413 - 277, duration=0.5)
+
+
 def time_str(ts=None):
     if not ts:
         ts = time.time()

@@ -19,14 +19,18 @@ PMenuCpySelBash = (314, 734)  # coy HAR parsed log
 '''
 
 # win 1024*768
+
+print(pyautogui.size())
+pyautogui.FAILSAFE = False
 PEnterRefresh = (647, 52)
 PRefresh = (85, 53)
-PCheck = (308, 290)
+PCheck = (63, 290)
 PClear = (46, 318)
-PConsoleUrl = (34, 454)
-PMenuCpy = (86, 259)
-PMenuCpySel = (319, 258)
-PMenuCpySelBash = (320, 559)  # coy HAR parsed log
+dy = 590 - 454
+PConsoleUrl = (34, 454 + 136)
+PMenuCpy = (86, 259 + 136)
+PMenuCpySel = (319, 258 + 136)
+PMenuCpySelBash = (320, 559 + 136)  # coy HAR parsed log
 
 MYIP = ""
 

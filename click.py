@@ -2,6 +2,7 @@ import pyautogui
 import pyperclip
 import time
 import socket
+
 pyautogui.dragTo()
 pyautogui.moveTo(100, 100, 1)
 "koj3pee+weov2Ee"
@@ -20,6 +21,7 @@ PConsoleUrl = (34, 629)
 PMenuCpy = (120, 433)
 PMenuCpySel = (301, 433)
 PMenuCpySelBash = (334, 740)
+
 
 
 def click_at(x, y, duration=0.1, slp=0.1):
