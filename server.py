@@ -45,7 +45,7 @@ async def move_to_right_click(pose, dur=0.1, slp=0.1):
 
 
 async def blur_click():
-    move_to(PEnterRefresh, slp=1)
+    await move_to_left_click(PEnterRefresh, slp=1)
     pyautogui.keyDown("enter")
     await asyncio.sleep(0.5)
     pyautogui.keyUp("enter")
