@@ -1,56 +1,90 @@
+import asyncio
+import time
 import pyautogui
 import pyperclip
+import tornado.web
+from tornado import gen
 
-PRefresh = (85, 51)
+pyautogui.FAILSAFE = False
+PEnterRefresh = (746, 50)
+PRefresh = (85, 52)
 PCheck = (308, 290)
 PClear = (44, 493)
-PConsoleUrl = (34, 629)
-PMenuCpy = (120, 433)
-PMenuCpySel = (301, 433)
-PMenuCpySelBash = (334, 740)  # coy HAR parsed log
+PConsoleUrl = (33, 628)
+PMenuCpy = (128, 429)
+PMenuCpySel = (317, 434)
+PMenuCpySelBash = (314, 734)  # coy HAR parsed log
+
+MYIP = ""
 
 
-def move_to(pose, dur=0.1, slp=0.1):
+def time_str(ts=None):
+    if not ts:
+        ts = time.time()
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
+
+
+async def move_to(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
-def move_to_left_click(pose, dur=0.1, slp=0.1):
+async def move_to_left_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.click()
+    pyautogui.click(pose[0], pose[1])
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
-def move_to_right_click(pose, dur=0.1, slp=0.1):
+async def move_to_right_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.rightClick()
+    pyautogui.rightClick(pose[0], pose[1])
     if slp > 0:
-        pyautogui.sleep(slp)
+        await asyncio.sleep(slp)
 
 
-def blur_click():
-    move_to_left_click(PRefresh, slp=1)
+async def blur_click():
+    await move_to_left_click(PEnterRefresh, slp=1)
     pyautogui.keyDown("enter")
-    pyautogui.sleep(0.5)
+    await asyncio.sleep(0.5)
     pyautogui.keyUp("enter")
-    pyautogui.sleep(20)
-    move_to(PClear)
-    move_to_left_click(PCheck, dur=1, slp=10)
+    await asyncio.sleep(20)
+    # pyautogui.sleep(20)
+    await move_to(PClear)
+    await move_to_left_click(PCheck, dur=1, slp=10)
 
 
-def cpy_curl():
-    move_to_left_click(PClear)
-    move_to_left_click(PRefresh, slp=5)
-    move_to_right_click(PConsoleUrl, slp=1)
-    move_to(PMenuCpy, slp=1)
-    move_to(PMenuCpySel, slp=1)
-    move_to_left_click(PMenuCpySelBash)
+async def cpy_curl():
+    await move_to_left_click(PClear)
+    await move_to_left_click(PRefresh, slp=5)
+    await move_to_right_click(PConsoleUrl, slp=1)
+    await move_to(PMenuCpy, slp=1)
+    await move_to(PMenuCpySel, slp=1)
+    await move_to_left_click(PMenuCpySelBash, dur=1, slp=0.5)
     data = pyperclip.paste()
-    print(data)
     return data
 
 
-blur_click()
-cpy_curl()
+ON_CLICK = False
+
+
+async def click_and_report():
+    global ON_CLICK
+    if ON_CLICK:
+        print(time_str(), "now click doing, bypass")
+        return ""
+    ON_CLICK = True
+    print(time_str(), "now click_and_report")
+
+    await blur_click()
+    data = await cpy_curl()
+    ON_CLICK = False
+
+    # print(MYIP, data)
+    print(time_str(), "click_and_report done")
+    return data
+
+
+data = await click_and_report()
+print(data)
