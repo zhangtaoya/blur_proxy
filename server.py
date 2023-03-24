@@ -32,14 +32,14 @@ async def move_to(pose, dur=0.1, slp=0.1):
 
 async def move_to_left_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.click()
+    pyautogui.click(pose[0], pose[1])
     if slp > 0:
         await asyncio.sleep(slp)
 
 
 async def move_to_right_click(pose, dur=0.1, slp=0.1):
     pyautogui.moveTo(pose[0], pose[1], duration=dur)
-    pyautogui.rightClick()
+    pyautogui.rightClick(pose[0], pose[1])
     if slp > 0:
         await asyncio.sleep(slp)
 

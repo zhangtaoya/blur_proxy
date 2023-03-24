@@ -8,7 +8,7 @@ pyautogui.moveTo(100, 100, 1)
 
 data = pyperclip.paste()
 print(data)
-pyautogui.doubleClick(259,136)
+pyautogui.doubleClick(259, 136)
 print(pyautogui.size())
 print(pyautogui.position())
 currentMouseX, currentMouseY = pyautogui.position()
@@ -23,8 +23,9 @@ PMenuCpySelBash = (334, 740)
 
 
 def click_at(x, y, duration=0.1, slp=0.1):
-    pyautogui.moveTo(x / 2, y / 2, duration)
-    pyautogui.click()
+    x, y = x / 2, y / 2
+    pyautogui.moveTo(x, y, duration)
+    pyautogui.click(x, y)
     if slp > 0:
         pyautogui.sleep(slp)
 
@@ -48,8 +49,9 @@ def move_to(x, y, slp=0.1):
 
 
 def right_click_at(x, y, duration=0.1, slp=0.1):
-    pyautogui.moveTo(x / 2, y / 2, duration)
-    pyautogui.rightClick()
+    x, y = x / 2, y / 2
+    pyautogui.moveTo(x, y, duration)
+    pyautogui.rightClick(x, y)
     if slp > 0:
         pyautogui.sleep(slp)
 
