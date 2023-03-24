@@ -25,8 +25,8 @@ def time_str(ts=None):
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))
 
 
-XRate = 1512 / 1024.0
-YRate = 944 / 768.0
+XRate = 1
+YRate = 1
 
 
 async def move_to(pose, dur=0.1, slp=0.1):
